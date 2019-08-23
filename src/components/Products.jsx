@@ -1,11 +1,13 @@
 import React from 'react';
 import { Card, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
+import data from '../data/products'
 
-const Products = ({ products }) => {
+const Products = () => {
   return (
     <div className="d-flex justify-content-center flex-wrap mt-5">
       {
-        products && products.map(({ imgUrl, title, description }) => {
+        data.products && data.products.map(({ imgUrl, title, description }) => {
           return (
             <Card style={{ width: '16rem', margin:'0 10px 10px 10px' }} key={title}>
               <Card.Img variant="top" src={imgUrl} style={{ width: "180px", height: "auto"}} />
@@ -14,7 +16,9 @@ const Products = ({ products }) => {
                 <Card.Text>
                   {description}
                 </Card.Text>
-                <Button variant="primary">Ürüne Git</Button>
+                <Link to={`product/${title}`}>
+                  <Button variant="primary">Ürüne Git</Button>
+                </Link>
               </Card.Body>
             </Card>
           )

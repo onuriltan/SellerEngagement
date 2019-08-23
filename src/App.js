@@ -1,14 +1,19 @@
 import React from 'react';
-import data from './data/products'
+import { Switch, Route } from 'react-router-dom'
 import NavBar from './components/Navbar'
 import Products from './components/Products'
+import Product from './components/Product'
 
 function App() {
   return (
     <div className="App">
       <NavBar />
       <div className="container">
-        <Products products={data.products} />
+        <Switch>
+          <Route exact path='/' component={Products} />
+          <Route path='/product/:id' component={Product} />
+          <Route path='*' exact={true} component={Products} />
+        </Switch>
       </div>
     </div>
   );
