@@ -2,4 +2,6 @@
 @import url('https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/united/bootstrap.min.css');
 
 // Override default variables before the import
-
+$theme-colors: (
+        "primary":#F28232
+);
