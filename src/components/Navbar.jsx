@@ -9,12 +9,12 @@ const NavBar = () => {
       <Link to="/">
         <Navbar.Brand className="text-light d-flex align-items-center" style={{textDecoration:'none'}}>
           <img alt="icon" src={Logo} width="40" height="40" className="d-inline-block align-top mr-3"/>
-          <div>Seller Center</div>
+          <div style={{textDecoration:'none'}}>Seller Center</div>
         </Navbar.Brand>
       </Link>
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text className="text-black">
-          Signed in as: <a href="#!" className="text-light">Onur İltan</a>
+          Signed in as: <a href="#!" className="text-light">Money Talks</a>
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>

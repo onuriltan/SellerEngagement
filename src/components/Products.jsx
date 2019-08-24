@@ -5,7 +5,7 @@ import data from '../data/products'
 
 const Products = () => {
   return (
-    <div className="d-flex justify-content-center flex-wrap mt-5">
+    <div className="d-flex justify-content-center align-items-center flex-wrap mt-5">
       {
         data.products && data.products.map(({ imgUrl, title, description }) => {
           return (
