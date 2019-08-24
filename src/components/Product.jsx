@@ -40,6 +40,7 @@ const Product = ({match}) => {
         makeToast()
         getProduct()
         setIsFetching(false)
+        this.forceUpdate();
       }
     ).catch(() => {
       setIsFetching(false)
@@ -94,6 +95,7 @@ const Product = ({match}) => {
                         size="sm"
                         role="status"
                         aria-hidden="true"
+                        style={{marginRight: "5px"}}
                       />
                       Lütfen Bekleyin...
                     </Button>
