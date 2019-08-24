@@ -1,80 +1,122 @@
-import React, { useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import axios from "axios";
-import { Table, Spinner } from "react-bootstrap";
+import {Table, Spinner} from "react-bootstrap";
 import './product.scss'
+import Chart from './Chart'
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer, toast} from 'react-toastify';
+import {css} from 'glamor';
 
-const Product = ({ match }) => {
-  const productName = match.params.id;
+const Product = ({match}) => {
+
+  const makeToast = () =>
+    toast("Ürününüzün güncellendiği bilgisi müşterilere gönderildi!", {
+      className: css({
+        borderRadius: '3px'
+      }),
+      bodyClassName: css({
+        fontSize: '16px',
+        color: 'black',
+        padding: '10px'
+      }),
+      progressClassName: css({
+        background: "#f27a1a"
+      }),
+      autoClose: 5000
+    });
+
 
   const [product, setProduct] = useState(null)
+  const [chartData, setChartData] = useState([])
+  const [newPrice, setNewPrice] = useState(null)
 
-  useEffect(() => {
+  const sendNewPriceToApi = () => {
+    axios.post('http://localhost:8080/merchant/changePrice/2543414', {
+      "merchantId": 2748,
+      "amount": newPrice
+    }).then(() => {
+        makeToast()
+        getProduct()
+      }
+    )
+  }
+
+  const getProduct = () => {
     axios.get('http://localhost:8080/merchant/2543414?merchantId=2748').then(product => {
       setProduct(product.data)
-      console.log(product.data)
+      setChartData(product.data.currentPrices);
     })
+  }
+
+  useEffect(() => {
+    getProduct()
   }, [])
 
   return (
     <div className="product">
-    {
-      product ?
-        <div>
-        <div className="product-details">
-          <div className="img-container">
-            <img src={`https://img-trendyol.mncdn.com/mnresize/415/622${product.imageUrl}`} alt="asd"
-                 className="imagee"/>
-          </div>
+      {
+        product ?
+          <div className="data-came">
+            <div className="product-details">
+              <div className="img-container">
+                <img src={`https://img-trendyol.mncdn.com/mnresize/415/622${product.imageUrl}`} alt="asd"
+                     className="imagee"/>
+              </div>
 
-          <div className="product-detailss">
-            <div className="pname">
-              {product.productName}
-            </div>
-            <div className="pprice">
-              {product.merchantCurrentAmount} TL
-            </div>
-            <div className="price-input">
-              <div className="input-group mb-3">
-                <input type="text" className="form-control" placeholder="Yeni fiyatı giriniz"/>
-                  <div className="input-group-append">
-                    <span className="input-group-text"> TL </span>
+              <div className="product-detailss">
+                <div className="pname">
+                  {product.productName}
+                </div>
+                <div className="pprice">
+                  {product.merchantCurrentAmount} TL
+                </div>
+                <div className="price-input">
+                  <div className="input-group mb-3">
+                    <input type="text" className="form-control" placeholder="Yeni fiyatı giriniz"
+                           value={newPrice}  onChange={e => setNewPrice(e.target.value)}
+                    />
+                    <div className="input-group-append">
+                      <span className="input-group-text"> TL </span>
+                    </div>
                   </div>
+                </div>
+                <button className="btn btn-primary" onClick={sendNewPriceToApi}>
+                  Fiyat Değiştir
+                </button>
               </div>
             </div>
-            <button className="btn btn-primary">Fiyat Değiştir</button>
+            <Chart data={chartData}/>
+            <div className="user-desired-prices">
+              <h5>Müşteri Fiyat Beklentileri</h5>
+              <Table striped bordered hover size="sm">
+                <thead>
+                <tr>
+                  <th>Beklenen Tutar</th>
+                  <th></th>
+                  <th>Talep Sayısı</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                  product.userDesiredPrices.map((desired, index) => {
+                    return <tr key={index}>
+                      <td>{desired.amount}</td>
+                      <td style={{textAlign: 'center'}}><i className="fas fa-arrow-right"></i></td>
+                      <td>{desired.count}</td>
+                    </tr>
+                  })
+                }
+                </tbody>
+              </Table>
+            </div>
           </div>
-        </div>
 
-          <div className="user-desired-prices">
-            <h5>Müşteri Fiyat Beklentileri</h5>
-            <Table striped bordered hover  size="sm">
-              <thead>
-              <tr>
-                <th>Beklenen Tutar</th>
-                <th></th>
-                <th>Talep Sayısı</th>
-              </tr>
-              </thead>
-              <tbody>
-              {
-                product.userDesiredPrices.map(desired => {
-                  return <tr>
-                    <td>{desired.amount}</td>
-                    <td style={{textAlign: 'center'}}><i className="fas fa-arrow-right"></i></td>
-                    <td>{desired.count}</td>
-                  </tr>
-                })
-              }
-              </tbody>
-            </Table>
+          :
+          <div className="spinn">
+            <Spinner animation="grow" variant="primary"/>
           </div>
-        </div>
-
-        :
-        <div className="spinn">
-          <Spinner animation="border" />
-        </div>
-    }
+      }
+      <ToastContainer/>
     </div>
   );
 };

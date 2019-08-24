@@ -6,7 +6,7 @@
 }
 
 .spinn {
-  .spinner-border {
+  .spinner-grow {
     width: 100px;
     height: 100px;
   }
@@ -16,6 +16,13 @@
 .product-details {
   margin-top: 50px;
   display: flex;
+}
+.data-came {
+  animation: fadein 2s;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 .img-container {
