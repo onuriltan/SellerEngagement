@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, useState} from 'react';
 import Chartjs from "chart.js";
 
-const Chart = ({data}) => {
+const Chart = ({data, currentPrice}) => {
   const chartRef = useRef(null)
   const [chart, setChart] = useState(null)
 
@@ -44,8 +44,14 @@ const Chart = ({data}) => {
     if (data.length > 0) {
       let merchants = [];
       let bgColors = []
+      var isAddedMerchant = false;
       for (let i = 0; i < data.length; i++) {
-        merchants.push(`Merchant ${i + 1}`);
+        if(data[i] === currentPrice && !isAddedMerchant) {
+          merchants.push(`MoneyTalks`);
+          isAddedMerchant = true;
+        } else {
+          merchants.push(`M${i + 1}`);
+        }
         bgColors.push('rgb(' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ',' + Math.round(Math.random() * 255) + ')')
       }
       if (!chart) {
@@ -55,7 +61,7 @@ const Chart = ({data}) => {
         drawChart(merchants, bgColors)
       }
     }
-  }, [data])
+  }, [data, currentPrice])
 
   return (
     <div>

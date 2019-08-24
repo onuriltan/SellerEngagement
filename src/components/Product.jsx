@@ -119,7 +119,7 @@ const Product = ({match}) => {
                 }
               </div>
             </div>
-            <Chart data={chartData}/>
+            <Chart data={chartData} currentPrice={product.merchantCurrentAmount}/>
             {product.userDesiredPrices.length > 0 ?
               <div className="user-desired-prices">
                 <h5>Müşteri Fiyat Beklentileri</h5>
