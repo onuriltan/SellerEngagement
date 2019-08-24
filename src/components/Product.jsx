@@ -9,8 +9,8 @@ import {css} from 'glamor';
 
 const Product = ({match}) => {
 
-  const makeToast = () =>
-    toast("Ürününüzün güncellendiği bilgisi müşterilere gönderildi!", {
+  const makeToast = (text) =>
+    toast(text, {
       className: css({
         borderRadius: '3px'
       }),
@@ -37,7 +37,20 @@ const Product = ({match}) => {
       "merchantId": 67,
       "amount": newPrice
     }).then(() => {
-        makeToast()
+        let count = 0
+        let userCount = 0
+        product.userDesiredPrices.forEach(desire => {
+          if (desire.amount < newPrice) {
+            count++
+          } else {
+            userCount += desire.count
+          }
+        })
+        if (userCount === 0) {
+          makeToast("Ürünün fiyatı güncellendi")
+        } else {
+          makeToast("Ürününüzün güncellendiği bilgisi " + userCount + " müşteriye gönderildi!")
+        }
         getProduct()
         setIsFetching(false)
         this.forceUpdate();
