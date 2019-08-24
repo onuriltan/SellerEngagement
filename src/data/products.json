@@ -1,25 +1,29 @@
 {
   "products": [
     {
-      "title": "Iphone 8",
-      "description": "Alın kazık yiyin",
-      "imgUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-silver-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795419237"
+      "id": 1,
+      "title": "Apple",
+      "description": "iPhone 8 64 GB Altın iphone864gold",
+      "imgUrl": "https://img-trendyol.mncdn.com/mnresize/415/622/Assets/ProductImages/oa/54/1248295/38/190198451644_1.jpg"
     },
     {
-      "title": "Iphone 7",
-      "description": "Alın kazık yiyin",
-      "imgUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-silver-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795419237"
+      "id": 2,
+      "title": "Huawei",
+      "description": "GT Classic Kahverengi Akıllı Saat CTFTNB19",
+      "imgUrl": "https://img-trendyol.mncdn.com/mnresize/415/622/Assets/ProductImages/oa/54/4379421/6/6901443262953_1_org_zoom.jpg"
 
     },
     {
-      "title": "Iphone 6",
-      "description": "Alın kazık yiyin",
-      "imgUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-silver-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795419237"
+      "id": 3,
+      "title": "Samsung",
+      "description": "49 İnç 124 Ekran 7 Serisi Smart 4K Televizyon",
+      "imgUrl": "https://img-trendyol.mncdn.com/mnresize/415/622/Assets/ProductImages/oa/54/2334186/3/8806088715063_1_org_zoom.jpg"
     },
     {
-      "title": "Iphone 5",
-      "description": "Alın kazık yiyin",
-      "imgUrl": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone8-plus-silver-select-2018?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1550795419237"
+      "id": 4,
+      "title": "Vestel",
+      "description": "Venüs Go 8 GB Siyah VENUSGO",
+      "imgUrl": "https://img-trendyol.mncdn.com/mnresize/415/622/Assets/ProductImages/oa/54/3742756/6/8698902742702_1_org_zoom.jpg"
     }
   ]
 }
