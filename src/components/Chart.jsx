@@ -9,7 +9,7 @@ const Chart = ({data}) => {
       var merchants = [];
       var bgColors = []
       for (let i = 0; i < data.length; i++) {
-        merchants.push(`merchant ${i + 1}`);
+        merchants.push(`Merchant ${i + 1}`);
         bgColors.push('rgb('+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+','+Math.round(Math.random()*255)+')')
       }
       new Chartjs('myChart', {

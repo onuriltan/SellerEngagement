@@ -14,11 +14,19 @@
 }
 
 .product-details {
-  margin-top: 50px;
+  margin: 50px 0;
   display: flex;
+  justify-content: center;
+}
+
+#myChart{
+  margin: 0 auto;
+  height: 400px !important;
+  width: 800px !important;
 }
 .data-came {
   animation: fadein 2s;
+  width: 100%;
 }
 @keyframes fadein {
   from { opacity: 0; }
@@ -28,6 +36,8 @@
 .img-container {
   border: solid 1px #e6e6e6;
   margin-right: 30px;
+  width: 40%;
+  text-align: center;
 }
 
 .imagee {
@@ -41,6 +51,7 @@
   border: solid 1px #e2e2e2;
   background-color: #ffffff;
   box-sizing: border-box;
+  width: 40%;
 
   .pname {
     font-size: 20px;
