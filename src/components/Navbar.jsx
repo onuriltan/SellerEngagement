@@ -14,7 +14,7 @@ const NavBar = () => {
       </Link>
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text className="text-black">
-          Signed in as: <a href="#!" className="text-light">Money Talks</a>
+          Merchant: <a href="#!" className="text-light">Money Talks</a>
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>

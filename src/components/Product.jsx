@@ -30,6 +30,26 @@ const Product = ({match}) => {
   const [chartData, setChartData] = useState([])
   const [newPrice, setNewPrice] = useState('')
   const [isFetching, setIsFetching] = useState(false)
+  const [msg, setMsg] = useState('')
+
+  const setPrice = price => {
+    setNewPrice(price)
+    let count = 0
+    let userCount = 0
+    product.userDesiredPrices.forEach(desire => {
+      if (desire.amount < newPrice) {
+        count++
+      } else {
+        userCount += desire.count
+      }
+    })
+    console.log(userCount)
+    if (userCount !== 0) {
+      setMsg("Ürününüzün güncelleneceği bilgisi " + userCount + " müşteriye gönderildi!")
+    } else {
+      setMsg(null)
+    }
+  }
 
   const sendNewPriceToApi = () => {
     setIsFetching(true)
@@ -92,7 +112,7 @@ const Product = ({match}) => {
                 <div className="price-input">
                   <div className="input-group mb-3">
                     <input type="text" className="form-control" placeholder="Yeni fiyatı giriniz"
-                           value={newPrice} onChange={e => setNewPrice(e.target.value)}
+                           value={newPrice} onChange={e => setPrice(e.target.value)}
                     />
                     <div className="input-group-append">
                       <span className="input-group-text"> TL </span>
@@ -117,6 +137,15 @@ const Product = ({match}) => {
                       Fiyat Değiştir
                     </button>
                 }
+
+
+                {
+                  newPrice ?
+                    <div className="animateee" style={{marginTop: "20px"}}> {msg} </div>
+                    :
+                    null
+                }
+
               </div>
             </div>
             <Chart data={chartData} currentPrice={product.merchantCurrentAmount}/>
